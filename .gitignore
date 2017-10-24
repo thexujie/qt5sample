@@ -206,3 +206,5 @@ FakesAssemblies/
 # Git files
 .git/
 
+#xujie
+*.user.props

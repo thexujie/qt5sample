@@ -15,6 +15,7 @@
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <Import Condition="Exists('$(SolutionDir)\$(SolutionName).cpp.default.props')" Project="$(SolutionDir)\$(SolutionName).cpp.default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <PlatformToolset>v141</PlatformToolset>
     <OutputDirectory>release\</OutputDirectory>
@@ -53,6 +54,7 @@
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" />
   </ImportGroup>
+  <Import Condition="Exists('$(SolutionDir)\$(SolutionName).props')" Project="$(SolutionDir)\$(SolutionName).props" />
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <IgnoreImportLibrary Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</IgnoreImportLibrary>
@@ -62,17 +64,18 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>D:\devs\qt\qt5_9_1\5.9.1\msvc2017_64\include;D:\devs\qt\qt5_9_1\5.9.1\msvc2017_64\include\QtQuick;D:\devs\qt\qt5_9_1\5.9.1\msvc2017_64\include\QtCore;D:\devs\qt\qt5_9_1\5.9.1\msvc2017_64\include\QtGUI;D:\devs\qt\qt5_9_1\5.9.1\msvc2017_64\include\QtQml;D:\devs\qt\qt5_9_1\5.9.1\msvc2017_64\mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(QtRootDir)include;$(QtRootDir)include\QtQuick;$(QtRootDir)include\QtCore;$(QtRootDir)include\QtGUI;$(QtRootDir)include\QtQml;$(QtRootDir)mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <BrowseInformation>false</BrowseInformation>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;WIN64;QT_QUICK_LIB;QT_GUI_LIB;QT_QML_LIB;QT_NETWORK_LIB;QT_CORE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <Link>
       <AdditionalDependencies>Qt5Quickd.lib;Qt5Guid.lib;Qt5Qmld.lib;Qt5Cored.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(TargetDir);D:\devs\qt\qt5_9_1\5.9.1\msvc2017_64\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(TargetDir);$(QtRootDir)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreImportLibrary>true</IgnoreImportLibrary>
       <SubSystem>Windows</SubSystem>
@@ -86,16 +89,16 @@
       <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;WIN64;QT_QUICK_LIB;QT_GUI_LIB;QT_QML_LIB;QT_NETWORK_LIB;QT_CORE_LIB;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
     <QtHeader>
-      <QtDirectory>F:\qt\5_9_0</QtDirectory>
+      <QtDirectory>$(QtRootDir)</QtDirectory>
       <QhAdditionalIncDirs>$(QtDirectory)\include\QtCore;$(QtDirectory)\include\QtGui</QhAdditionalIncDirs>
     </QtHeader>
     <QtResource>
-      <QtDirectory>D:\devs\qt\qt5_9_1\5.9.1\msvc2017_64</QtDirectory>
+      <QtDirectory>$(QtRootDir)</QtDirectory>
     </QtResource>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>D:\devs\qt\qt5_9_1\5.9.1\msvc2017_64\include;D:\devs\qt\qt5_9_1\5.9.1\msvc2017_64\include\QtQuick;D:\devs\qt\qt5_9_1\5.9.1\msvc2017_64\include\QtCore;D:\devs\qt\qt5_9_1\5.9.1\msvc2017_64\include\QtGUI;D:\devs\qt\qt5_9_1\5.9.1\msvc2017_64\include\QtQml;D:\devs\qt\qt5_9_1\5.9.1\msvc2017_64\mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(QtRootDir)include;$(QtRootDir)include\QtQuick;$(QtRootDir)include\QtCore;$(QtRootDir)include\QtGUI;$(QtRootDir)include\QtQml;$(QtRootDir)mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <Optimization>MaxSpeed</Optimization>
       <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;WIN64;QT_QUICK_LIB;QT_GUI_LIB;QT_QML_LIB;QT_NETWORK_LIB;QT_CORE_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -104,7 +107,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies>Qt5Quick.lib;Qt5Gui.lib;Qt5Qml.lib;Qt5Core.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(TargetDir);D:\devs\qt\qt5_9_1\5.9.1\msvc2017_64\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(TargetDir);$(QtRootDir)lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreImportLibrary>true</IgnoreImportLibrary>
       <SubSystem>Windows</SubSystem>
@@ -118,11 +121,11 @@
       <PreprocessorDefinitions>_WINDOWS;UNICODE;WIN32;WIN64;QT_QUICK_LIB;QT_GUI_LIB;QT_QML_LIB;QT_NETWORK_LIB;QT_CORE_LIB;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ResourceCompile>
     <QtHeader>
-      <QtDirectory>F:\qt\5_9_0</QtDirectory>
+      <QtDirectory>$(QtRootDir)</QtDirectory>
       <QhAdditionalIncDirs>$(QtDirectory)\include\QtCore;$(QtDirectory)\include\QtGui</QhAdditionalIncDirs>
     </QtHeader>
     <QtResource>
-      <QtDirectory>D:\devs\qt\qt5_9_1\5.9.1\msvc2017_64</QtDirectory>
+      <QtDirectory>$(QtRootDir)</QtDirectory>
     </QtResource>
   </ItemDefinitionGroup>
   <ItemGroup>
