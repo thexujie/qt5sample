@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="clocks.qml" />
+    <None Include="content\Clock.qml">
+      <Filter>content</Filter>
+    </None>
+    <None Include="test.qml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="XxWindow.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="content">
+      <UniqueIdentifier>{430f63eb-12d1-42b4-8b01-da2262a55450}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <QtResource Include="clocks.qrc" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtHeader Include="XxWindow.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Natvis Include="qt5.natvis" />
+  </ItemGroup>
+</Project>
