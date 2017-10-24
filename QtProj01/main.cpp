@@ -10,7 +10,7 @@
 
 int qtmain(int argc, char *argv[])
 {
-	qInfo() << "version" << QT_VERSION << std::endl;
+	qInfo() << "version" << QT_VERSION;
 
 	QGuiApplication app(argc, argv);
 	qmlRegisterType<XxWindow>("com.thexujie", 1, 0, "XxWindow");

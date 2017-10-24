@@ -141,9 +141,6 @@
   <ItemGroup>
     <QtHeader Include="XxWindow.h" />
   </ItemGroup>
-  <ItemGroup>
-    <Natvis Include="qt5.natvis" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
 </Project>

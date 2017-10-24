@@ -22,7 +22,4 @@
   <ItemGroup>
     <QtHeader Include="XxWindow.h" />
   </ItemGroup>
-  <ItemGroup>
-    <Natvis Include="qt5.natvis" />
-  </ItemGroup>
 </Project>
