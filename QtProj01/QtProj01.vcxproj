@@ -64,7 +64,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(QtRootDir)include;$(QtRootDir)include\QtQuick;$(QtRootDir)include\QtCore;$(QtRootDir)include\QtGUI;$(QtRootDir)include\QtQml;$(QtRootDir)mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(QtRootDir)include;$(QtRootDir)include\QtQuick;$(QtRootDir)include\QtCore;$(QtRootDir)include\QtGUI;$(QtRootDir)include\QtWidgets;$(QtRootDir)include\QtQml;$(QtRootDir)mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <BrowseInformation>false</BrowseInformation>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
@@ -74,7 +74,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>Qt5Quickd.lib;Qt5Guid.lib;Qt5Qmld.lib;Qt5Cored.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Qt5Quickd.lib;Qt5Guid.lib;Qt5Widgets.lib;Qt5Qmld.lib;Qt5Cored.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(TargetDir);$(QtRootDir)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreImportLibrary>true</IgnoreImportLibrary>

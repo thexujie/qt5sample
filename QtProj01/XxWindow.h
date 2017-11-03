@@ -10,6 +10,7 @@ public:
 	~XxWindow();
 
 protected:
+	bool event(QEvent * evt);
 	bool nativeEvent(const QByteArray &eventType, void *message, long *result) override;
 
 	void showEvent(QShowEvent * evt) override;
