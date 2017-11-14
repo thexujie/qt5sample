@@ -5,10 +5,8 @@
 
 XxWindow::XxWindow(QWindow *parent) : QQuickWindow(parent)
 {
-	setFlags(Qt::Window | Qt::FramelessWindowHint);
+	setFlags(Qt::Window);
 	setColor(QColor(Qt::transparent));
-	HWND hWnd = (HWND)winId();
-	::SetWindowLong(hWnd, GWL_STYLE, WS_POPUP | WS_THICKFRAME | WS_MINIMIZEBOX | WS_MAXIMIZEBOX);
 }
 
 XxWindow::~XxWindow()
@@ -47,7 +45,7 @@ long HitTestNow(HWND hWnd, QPoint point, QRect rcWindow)
 		return HTNOWHERE;
 
 	if(IsZoomed(hWnd))
-		return HTCLIENT;
+		return HTCAPTION;
 
 	long RESULTS[4][3] = 
 	{
@@ -81,9 +79,6 @@ bool XxWindow::event(QEvent * evt)
 	return QQuickWindow::event(evt);
 }
 
-#include "Dwmapi.h"
-#pragma comment(lib, "Dwmapi.lib")
-
 bool XxWindow::nativeEvent(const QByteArray &eventType, void *message, long *result)
 {
 	Q_UNUSED(eventType);
@@ -98,30 +93,14 @@ bool XxWindow::nativeEvent(const QByteArray &eventType, void *message, long *res
 		*result = HitTestNow(msg->hwnd, point, rcWindow);
 		return true;
 	}
-
 	
 	switch(msg->message) {
-	//case WM_SHOWWINDOW:
-	//{
-	//	const MARGINS shadow = { 40, 40, 40, 40 };
-	//	DwmExtendFrameIntoClientArea((HWND)winId(), &shadow);
-	//	return false;
-	//}
-
-		//// after that call Qt considers window as frameless
-		//setFlags(Qt::FramelessWindowHint | Qt::WindowSystemMenuHint | Qt::Window | Qt::WindowMinimizeButtonHint | Qt::WindowMaximizeButtonHint);
-		//// that call force the Windows to serve users mouse events like in standard window
-		//SetWindowLongPtr(msg->hwnd, GWL_STYLE, WS_POPUP | WS_CAPTION | WS_THICKFRAME | WS_MAXIMIZEBOX | WS_MINIMIZEBOX);
-	//case WM_GETMINMAXINFO:
-	//	HandleGetMinMaxInfoMsg(msg, result);
-	//	*result = 0;
-	//	return true;
 	case WM_ERASEBKGND:
 		*result = 0;
 		return true;
-	//case WM_NCPAINT:
-	//	*result = 0;
-	//	return true;  
+	case WM_GETMINMAXINFO:
+		*result = 0;
+		return true;
 	case WM_NCCALCSIZE:
 	{
 		*result = 0;
@@ -138,29 +117,17 @@ bool XxWindow::nativeEvent(const QByteArray &eventType, void *message, long *res
 			p->rgrc[0] = rcDst;
 			p->rgrc[1] = rcDst;
 			p->rgrc[2] = rcSrc;
-
-
-			//rcClient.left = rcDst.left + xFrame;
-			//rcClient.top = rcDst.top + nTHight;
-			//rcClient.right = rcDst.right - xFrame;
-			//rcClient.bottom = rcDst.bottom - yFrame;
-
-
-			//CopyRect(&p->rgrc[0], &rcClient);
-			//CopyRect(&p->rgrc[1], &rcDst);
-			//CopyRect(&p->rgrc[2], &rcSrc);
 		}
 		else
 		{
 			RECT * rc = (RECT *)msg->lParam;
-
 
 			rc->left = rc->left + xFrame;
 			rc->top = rc->top + nTHight;
 			rc->right = rc->right - xFrame;
 			rc->bottom = rc->bottom - yFrame;
 		}
-		*result = 1;
+		*result = 0;
 		return true;
 	}
 	default:
